@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -14,17 +12,19 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'AdminUser',
-            'email' => 'test1@example.com',
-            'password' => bcrypt('123'),
-            'role'=>'admin'
-        ]);
-        User::factory()->create([
-            'name' => 'GuestUser',
-            'email' => 'test2@example.com',
-            'password' => bcrypt('123'),
-            'role'=>'guest'
+        DB::table('users')->insert([
+            [
+                'name' => 'AdminUser',
+                'email' => 'test1@example.com',
+                'password' => bcrypt('123'),
+                'role'=>'admin'
+            ],
+            [
+                'name' => 'GuestUser',
+                'email' => 'test2@example.com',
+                'password' => bcrypt('123'),
+                'role'=>'guest'
+            ]
         ]);
     }
 }
